@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Projects - caretodare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1a73e8;
+            --secondary-blue: #4285f4;
+            --light-blue: #e8f0fe;
+            --dark-blue: #0d47a1;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --text-dark: #202124;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+        
+        .navbar {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        
+        .nav-link {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-blue);
+            border-color: var(--dark-blue);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('./images/s2.jpeg');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0 60px;
+            color: white;
+            text-align: center;
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-blue);
+        }
+        
+        .section-title.center:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .impact-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        
+        .stats-section {
+            background-color: var(--light-blue);
+            padding: 60px 0;
+        }
+        
+        .need-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        
+        .testimonial {
+            background-color: var(--light-blue);
+            border-radius: 10px;
+            padding: 25px;
+            position: relative;
+        }
+        
+        .testimonial:after {
+            content: '"';
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 3rem;
+            color: var(--primary-blue);
+            opacity: 0.2;
+        }
+        
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--white);
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-blue);
+        }
+        
+        .project-filter {
+            margin-bottom: 30px;
+        }
+        
+        .filter-btn {
+            margin: 5px;
+        }
+        
+        .progress {
+            height: 10px;
+            border-radius: 5px;
+        }
+        
+        .progress-bar {
+            background-color: var(--primary-blue);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 80px 0 40px;
+            }
+            
+            .section-title:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .impact-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">
+                <i class="fas fa-hands-helping me-2"></i>DareToCare
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <a class="nav-link" href="./index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./index.html#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./projects.html">Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./community.html">Blog</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./donate.html">Donate</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="./request.html">Request Help</a>
+                </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html#contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="ms-lg-3 mt-3 mt-lg-0">
+                    <a href="#" class="btn btn-outline-primary btn-sm me-2">Login</a>
+                    <a href="#" class="btn btn-primary btn-sm">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="display-4 fw-bold mb-4">Our Projects</h1>
+                    <p class="lead mb-4">Discover the initiatives we're running to support communities across Africa and see how you can contribute to making a difference.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title center">Making an Impact Across Africa</h2>
+                    <p class="lead">We're working on various initiatives to support education, clean water access, skill development, and more in communities across the continent.</p>
+                </div>
+            </div>
+            
+            <!-- Project Filter -->
+            <div class="row mb-4">
+                <div class="col-12">
+                    <div class="project-filter text-center">
+                        <button class="btn btn-outline-primary filter-btn active" data-filter="all">All Projects</button>
+                        <button class="btn btn-outline-primary filter-btn" data-filter="education">Education</button>
+                        <button class="btn btn-outline-primary filter-btn" data-filter="water">Clean Water</button>
+                        <button class="btn btn-outline-primary filter-btn" data-filter="skills">Skills Development</button>
+                        <button class="btn btn-outline-primary filter-btn" data-filter="health">Health & Medical</button>
+                        <button class="btn btn-outline-primary filter-btn" data-filter="completed">Completed</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Projects Grid -->
+            <div class="row" id="projects-grid">
+                <!-- Education Project 1 -->
+                <div class="col-md-6 col-lg-4 mb-4 project-item" data-category="education">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Education project">
+                        <div class="card-body">
+                            <span class="badge bg-primary mb-2">Education</span>
+                            <h5 class="card-title">School Supplies Initiative</h5>
+                            <p class="card-text">Providing school materials, uniforms, and educational resources to children in underserved communities across Cameroon.</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>650,000 CFA raised</span>
+                                <span>1,000,000 CFA goal</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-primary w-100">Support This Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Water Project -->
+                <div class="col-md-6 col-lg-4 mb-4 project-item" data-category="water">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1577897107557-3ba41c5f3e33?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Clean water project">
+                        <div class="card-body">
+                            <span class="badge bg-info mb-2">Clean Water</span>
+                            <h5 class="card-title">Clean Water for Rural Communities</h5>
+                            <p class="card-text">Building wells and water purification systems in communities without access to clean drinking water in Northern Cameroon.</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>320,000 CFA raised</span>
+                                <span>800,000 CFA goal</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-primary w-100">Support This Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skills Project -->
+                <div class="col-md-6 col-lg-4 mb-4 project-item" data-category="skills">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Skills workshop">
+                        <div class="card-body">
+                            <span class="badge bg-warning mb-2">Skills Development</span>
+                            <h5 class="card-title">Youth Skill Workshops</h5>
+                            <p class="card-text">Free workshops in braiding, baking, shaving, and other trades to empower African youth with marketable skills.</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>375,000 CFA raised</span>
+                                <span>500,000 CFA goal</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-primary w-100">Support This Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Health Project -->
+                <div class="col-md-6 col-lg-4 mb-4 project-item" data-category="health">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Medical project">
+                        <div class="card-body">
+                            <span class="badge bg-danger mb-2">Health & Medical</span>
+                            <h5 class="card-title">Community Health Outreach</h5>
+                            <p class="card-text">Providing basic medical care, health education, and essential medicines to remote communities in Cameroon.</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>450,000 CFA raised</span>
+                                <span>1,500,000 CFA goal</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-primary w-100">Support This Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Education Project 2 -->
+                <div class="col-md-6 col-lg-4 mb-4 project-item" data-category="education">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Library project">
+                        <div class="card-body">
+                            <span class="badge bg-primary mb-2">Education</span>
+                            <h5 class="card-title">Community Library Project</h5>
+                            <p class="card-text">Establishing libraries with books and digital learning resources in rural areas to promote literacy and lifelong learning.</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>825,000 CFA raised</span>
+                                <span>1,500,000 CFA goal</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-primary w-100">Support This Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Completed Project -->
+                <div class="col-md-6 col-lg-4 mb-4 project-item" data-category="completed">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Emergency relief">
+                        <div class="card-body">
+                            <span class="badge bg-success mb-2">Completed</span>
+                            <h5 class="card-title">Flood Relief Emergency Response</h5>
+                            <p class="card-text">Provided immediate assistance to communities affected by flooding in the coastal regions, including food, shelter, and supplies.</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>1,200,000 CFA raised</span>
+                                <span>1,200,000 CFA goal</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-outline-primary w-100">View Project Report</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <nav aria-label="Project pagination" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="impact-number">15+</div>
+                    <p>Active Projects</p>
+                </div>
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="impact-number">8</div>
+                    <p>Completed Projects</p>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="impact-number">6</div>
+                    <p>African Countries</p>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="impact-number">5,000+</div>
+                    <p>Lives Impacted</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <h2>Have a Project Idea?</h2>
+                    <p class="lead mb-0">Do you know of a community in need or have an idea for a project that could make a difference? We'd love to hear from you.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="./index.html#contact" class="btn btn-primary btn-lg">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="text-white mb-4"><i class="fas fa-hands-helping me-2"></i>DareToCare</h4>
+                    <p>Building bridges of hope between those who want to help and those who need support across Africa.</p>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="./index.html">Home</a></li>
+                        <li class="mb-2"><a href="./index.html#about">About</a></li>
+                        <li class="mb-2"><a href="./projects.html">Projects</a></li>
+                        <li class="mb-2"><a href="./index.html#blog">Blog</a></li>
+                        <li><a href="./index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">Get Involved</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="./index.html#donate">Donate</a></li>
+                        <li class="mb-2"><a href="./index.html#request">Request Help</a></li>
+                        <li class="mb-2"><a href="#">Volunteer</a></li>
+                        <li class="mb-2"><a href="#">Partnerships</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="text-white mb-4">Newsletter</h5>
+                    <p>Subscribe to our newsletter to receive updates on our projects.</p>
+                    <form class="mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email address">
+                            <button class="btn btn-primary" type="button">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <hr class="my-5 bg-light">
+            
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2023 DareToCare. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3">Privacy Policy</a>
+                    <a href="#" class="text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Project filtering functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectItems = document.querySelectorAll('.project-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    // Get filter value
+                    const filterValue = button.getAttribute('data-filter');
+                    
+                    // Show/hide projects based on filter
+                    projectItems.forEach(item => {
+                        if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

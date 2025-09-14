@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Requests - caretodare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1a73e8;
+            --secondary-blue: #4285f4;
+            --light-blue: #e8f0fe;
+            --dark-blue: #0d47a1;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --text-dark: #202124;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+        
+        .navbar {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        
+        .nav-link {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-blue);
+            border-color: var(--dark-blue);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0 60px;
+            color: white;
+            text-align: center;
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-blue);
+        }
+        
+        .section-title.center:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .request-card {
+            transition: all 0.3s ease;
+        }
+        
+        .request-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .need-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .tag-food {
+            background-color: #ffeaa7;
+            color: #d35400;
+        }
+        
+        .tag-clothing {
+            background-color: #81ecec;
+            color: #00b894;
+        }
+        
+        .tag-education {
+            background-color: #74b9ff;
+            color: #0984e3;
+        }
+        
+        .tag-medical {
+            background-color: #fab1a0;
+            color: #d63031;
+        }
+        
+        .tag-housing {
+            background-color: #a29bfe;
+            color: #6c5ce7;
+        }
+        
+        .tag-financial {
+            background-color: #ffeaa7;
+            color: #fdcb6e;
+        }
+        
+        .tag-other {
+            background-color: #dfe6e9;
+            color: #636e72;
+        }
+        
+        .urgent-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 1;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .filter-section {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stats-card {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 0;
+        }
+        
+        .stats-label {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+            margin-top: 50px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--white);
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-blue);
+        }
+        
+        .pagination .page-link {
+            color: var(--primary-blue);
+        }
+        
+        .pagination .page-item.active .page-link {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 80px 0 40px;
+            }
+            
+            .section-title:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .stats-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="./index.html">
+                <i class="fas fa-hands-helping me-2"></i>DareToCare
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+					<a class="nav-link" href="./index.html">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="./index.html#about">About</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="./projects.html">Projects</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="./community.html">Blog</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="./donate.html">Donate</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="./request.html">Request Help</a>
+				</li>
+				
+                    <li class="nav-item">
+                        <a class="nav-link" href="./index.html#contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="ms-lg-3 mt-3 mt-lg-0">
+                    <a href="./login.html" class="btn btn-outline-primary btn-sm me-2">Login</a>
+                    <a href="./register.html" class="btn btn-primary btn-sm">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="display-4 fw-bold mb-4">Community Requests</h1>
+                    <p class="lead mb-4">Browse through requests from community members who need assistance</p>
+                    <a href="./request.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-plus me-2"></i>Post a Request
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="stats-card">
+                        <p class="stats-number">142</p>
+                        <p class="stats-label">Active Requests</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="stats-card">
+                        <p class="stats-number">89</p>
+                        <p class="stats-label">Requests Fulfilled</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stats-card">
+                        <p class="stats-number">16</p>
+                        <p class="stats-label">Urgent Needs</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stats-card">
+                        <p class="stats-number">5</p>
+                        <p class="stats-label">Countries</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requests Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="section-title">Community Assistance Requests</h2>
+            <p class="lead mb-5">Find people in your community who need help and support them</p>
+            
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="searchInput" class="form-label">Search Requests</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="searchInput" placeholder="Search by keyword, location, or need">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="categoryFilter" class="form-label">Filter by Category</label>
+                        <select class="form-select" id="categoryFilter">
+                            <option value="all">All Categories</option>
+                            <option value="food">Food Assistance</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="education">Education</option>
+                            <option value="medical">Medical</option>
+                            <option value="housing">Housing</option>
+                            <option value="financial">Financial</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="urgencyFilter" class="form-label">Filter by Urgency</label>
+                        <select class="form-select" id="urgencyFilter">
+                            <option value="all">All Urgency Levels</option>
+                            <option value="urgent">Urgent</option>
+                            <option value="high">High</option>
+                            <option value="medium">Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="verifiedOnly" value="option1">
+                            <label class="form-check-label" for="verifiedOnly">Show verified requests only</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="nearMe" value="option2">
+                            <label class="form-check-label" for="nearMe">Show requests near me</label>
+                        </div>
+                        <button class="btn btn-outline-primary btn-sm float-end" id="resetFilters">
+                            <i class="fas fa-redo me-1"></i>Reset Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Requests Grid -->
+            <div class="row" id="requestsContainer">
+                <!-- Request 1 -->
+                <div class="col-lg-6 mb-4 request-item" data-category="food" data-urgency="urgent">
+                    <div class="card request-card h-100">
+                        <div class="card-body">
+                            <span class="badge bg-danger urgent-badge">Urgent</span>
+                            <div class="d-flex justify-content-between mb-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="user-avatar me-3" alt="User">
+                                    <div>
+                                        <h6 class="mb-0">Chinwe O.</h6>
+                                        <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i>Lagos, Nigeria</small>
+                                    </div>
+                                </div>
+                                <small class="text-muted">2 days ago</small>
+                            </div>
+                            <h5 class="card-title">Food for My Family</h5>
+                            <p class="card-text">I lost my job last month and struggling to feed my three children. We need basic food supplies to get through this difficult time.</p>
+                            <div class="mb-3">
+                                <span class="need-tag tag-food">Food</span>
+                                <span class="need-tag tag-financial">Financial Aid</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="badge bg-light text-dark">
+                                        <i class="fas fa-users me-1"></i>Family of 4
+                                    </span>
+                                </div>
+                                <a href="./offer-help.html" class="btn btn-sm btn-primary">Offer Help</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Request 2 -->
+                <div class="col-lg-6 mb-4 request-item" data-category="education" data-urgency="high">
+                    <div class="card request-card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="user-avatar me-3" alt="User">
+                                    <div>
+                                        <h6 class="mb-0">Abebi T.</h6>
+                                        <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i>Addis Ababa, Ethiopia</small>
+                                    </div>
+                                </div>
+                                <small class="text-muted">5 days ago</small>
+                            </div>
+                            <h5 class="card-title">School Supplies for My Children</h5>
+                            <p class="card-text">My two children need school supplies for the new academic year. I can't afford books, uniforms, and other materials they need.</p>
+                            <div class="mb-3">
+                                <span class="need-tag tag-education">Education</span>
+                                <span class="need-tag tag-clothing">Clothing</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="badge bg-light text-dark">
+                                        <i class="fas fa-graduation-cap me-1"></i>2 Children
+                                    </span>
+                                </div>
+                                <a href="./offer-help.html" class="btn btn-sm btn-primary">Offer Help</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Request 3 -->
+                <div class="col-lg-6 mb-4 request-item" data-category="medical" data-urgency="urgent">
+                    <div class="card request-card h-100">
+                        <div class="card-body">
+                            <span class="badge bg-danger urgent-badge">Urgent</span>
+                            <div class="d-flex justify-content-between mb-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="user-avatar me-3" alt="User">
+                                    <div>
+                                        <h6 class="mb-0">Kwame A.</h6>
+                                        <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i>Accra, Ghana</small>
+                                    </div>
+                                </div>
+                                <small class="text-muted">1 day ago</small>
+                            </div>
+                            <h5 class="card-title">Medical Assistance for My Mother</h5>
+                            <p class="card-text">My mother needs emergency surgery for appendicitis. I need help with the medical bills as I don't have enough savings.</p>
+                            <div class="mb-3">
+                                <span class="need-tag tag-medical">Medical</span>
+                                <span class="need-tag tag-financial">Financial Aid</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="badge bg-light text-dark">
+                                        <i class="fas fa-first-aid me-1"></i>Emergency
+                                    </span>
+                                </div>
+                                <a href="./offer-help.html" class="btn btn-sm btn-primary">Offer Help</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Request 4 -->
+                <div class="col-lg-6 mb-4 request-item" data-category="housing" data-urgency="medium">
+                    <div class="card request-card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db1604?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="user-avatar me-3" alt="User">
+                                    <div>
+                                        <h6 class="mb-0">Amina J.</h6>
+                                        <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i>Nairobi, Kenya</small>
+                                    </div>
+                                </div>
+                                <small class="text-muted">1 week ago</small>
+                            </div>
+                            <h5 class="card-title">Temporary Housing After Fire</h5>
+                            <p class="card-text">Our home was damaged in a fire last week. We need temporary accommodation while repairs are being done. Any help is appreciated.</p>
+                            <div class="mb-3">
+                                <span class="need-tag tag-housing">Housing</span>
+                                <span class="need-tag tag-clothing">Clothing</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="badge bg-light text-dark">
+                                        <i class="fas fa-home me-1"></i>Family of 3
+                                    </span>
+                                </div>
+                                <a href="./offer-help.html" class="btn btn-sm btn-primary">Offer Help</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Request 5 -->
+                <div class="col-lg-6 mb-4 request-item" data-category="education" data-urgency="low">
+                    <div class="card request-card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <div class="d-flex align-items-center">
+                                    <div class="user-avatar bg-primary text-white d-flex align-items-center justify-content-center me-3">
+                                        <i class="fas fa-users"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Community School</h6>
+                                        <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i>Buea, Cameroon</small>
+                                    </div>
+                                </div>
+                                <small class="text-muted">2 weeks ago</small>
+                            </div>
+                            <h5 class="card-title">Books for Rural School Library</h5>
+                            <p class="card-text">Our small community school needs books for our library. We're looking for educational books suitable for children ages 6-12.</p>
+                            <div class="mb-3">
+                                <span class="need-tag tag-education">Education</span>
+                                <span class="need-tag tag-other">Books</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="badge bg-light text-dark">
+                                        <i class="fas fa-book me-1"></i>100+ Students
+                                    </span>
+                                </div>
+                                <a href="./offer-help.html" class="btn btn-sm btn-primary">Offer Help</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Request 6 -->
+                <div class="col-lg-6 mb-4 request-item" data-category="financial" data-urgency="high">
+                    <div class="card request-card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="user-avatar me-3" alt="User">
+                                    <div>
+                                        <h6 class="mb-0">Samuel D.</h6>
+                                        <small class="text-muted"><i class="fas fa-map-marker-alt me-1"></i>Douala, Cameroon</small>
+                                    </div>
+                                </div>
+                                <small class="text-muted">3 days ago</small>
+                            </div>
+                            <h5 class="card-title">Startup Capital for Small Business</h5>
+                            <p class="card-text">I'm trying to start a small shoe repair business to support my family. I need help with initial capital for tools and materials.</p>
+                            <div class="mb-3">
+                                <span class="need-tag tag-financial">Financial Aid</span>
+                                <span class="need-tag tag-other">Business</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <span class="badge bg-light text-dark">
+                                        <i class="fas fa-briefcase me-1"></i>Entrepreneur
+                                    </span>
+                                </div>
+                                <a href="./offer-help.html" class="btn btn-sm btn-primary">Offer Help</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <nav aria-label="Request pagination" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mb-4 mb-lg-0">
+                    <h2>Want to help someone in need?</h2>
+                    <p class="lead mb-0">Create an account to offer assistance directly to those who need it most.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="./register.html" class="btn btn-primary btn-lg me-3">Register Now</a>
+                    <a href="./index.html#donate" class="btn btn-outline-primary btn-lg">Donate</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="text-white mb-4"><i class="fas fa-hands-helping me-2"></i>DareToCare</h4>
+                    <p>Building bridges of hope between those who want to help and those who need support across Africa.</p>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="./index.html">Home</a></li>
+                        <li class="mb-2"><a href="./index.html#about">About</a></li>
+                        <li class="mb-2"><a href="./projects.html">Projects</a></li>
+                        <li class="mb-2"><a href="./index.html#blog">Blog</a></li>
+                        <li><a href="./index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">Get Involved</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="./index.html#donate">Donate</a></li>
+                        <li class="mb-2"><a href="./request-help.html">Request Help</a></li>
+                        <li class="mb-2"><a href="./view-requests.html">View Requests</a></li>
+                        <li class="mb-2"><a href="#">Volunteer</a></li>
+                        <li><a href="#">Partnerships</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="text-white mb-4">Newsletter</h5>
+                    <p>Subscribe to our newsletter to receive updates on our projects.</p>
+                    <form class="mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email address">
+                            <button class="btn btn-primary" type="button">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <hr class="my-4 bg-light">
+            
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2023 DareToCare. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3">Privacy Policy</a>
+                    <a href="#" class="text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter functionality
+            const searchInput = document.getElementById('searchInput');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const urgencyFilter = document.getElementById('urgencyFilter');
+            const verifiedOnly = document.getElementById('verifiedOnly');
+            const nearMe = document.getElementById('nearMe');
+            const resetFilters = document.getElementById('resetFilters');
+            const requestItems = document.querySelectorAll('.request-item');
+            
+            // Function to filter requests
+            function filterRequests() {
+                const searchText = searchInput.value.toLowerCase();
+                const categoryValue = categoryFilter.value;
+                const urgencyValue = urgencyFilter.value;
+                const verifiedChecked = verifiedOnly.checked;
+                const nearMeChecked = nearMe.checked;
+                
+                requestItems.forEach(item => {
+                    const category = item.getAttribute('data-category');
+                    const urgency = item.getAttribute('data-urgency');
+                    const text = item.textContent.toLowerCase();
+                    
+                    const matchesSearch = searchText === '' || text.includes(searchText);
+                    const matchesCategory = categoryValue === 'all' || category === categoryValue;
+                    const matchesUrgency = urgencyValue === 'all' || urgency === urgencyValue;
+                    
+                    if (matchesSearch && matchesCategory && matchesUrgency) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+            
+            // Event listeners for filters
+            searchInput.addEventListener('input', filterRequests);
+            categoryFilter.addEventListener('change', filterRequests);
+            urgencyFilter.addEventListener('change', filterRequests);
+            verifiedOnly.addEventListener('change', filterRequests);
+            nearMe.addEventListener('change', filterRequests);
+            
+            // Reset filters
+            resetFilters.addEventListener('click', function() {
+                searchInput.value = '';
+                categoryFilter.value = 'all';
+                urgencyFilter.value = 'all';
+                verifiedOnly.checked = false;
+                nearMe.checked = false;
+                
+                requestItems.forEach(item => {
+                    item.style.display = 'block';
+                });
+            });
+            
+            // Simulate loading more requests
+            const loadMoreButton = document.createElement('button');
+            loadMoreButton.className = 'btn btn-outline-primary w-100 mt-4';
+            loadMoreButton.textContent = 'Load More Requests';
+            loadMoreButton.addEventListener('click', function() {
+                alert('In a real application, this would load more requests from the server.');
+            });
+            
+            document.querySelector('#requestsContainer').after(loadMoreButton);
+        });
+    </script>
+</body>
+</html>

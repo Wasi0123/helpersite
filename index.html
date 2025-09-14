@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>caretodare - Compassion in Action Across Africa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #1a73e8;
+            --secondary-blue: #4285f4;
+            --light-blue: #e8f0fe;
+            --dark-blue: #0d47a1;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --text-dark: #202124;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-dark);
+            background-color: var(--white);
+        }
+        
+        .navbar {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        
+        .nav-link {
+            color: var(--text-dark);
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--dark-blue);
+            border-color: var(--dark-blue);
+        }
+        
+        .btn-outline-primary {
+            color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(218, 232, 238, 0.267), rgba(202, 232, 238, 0.623)), 
+                        url('./images/s3.jpeg');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0 80px;
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--primary-blue);
+        }
+        
+        .section-title.center:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .impact-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+        
+        .stats-section {
+            background-color: var(--light-blue);
+            padding: 60px 0;
+        }
+        
+        .need-tag {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        
+        .testimonial {
+            background-color: var(--light-blue);
+            border-radius: 10px;
+            padding: 25px;
+            position: relative;
+        }
+        
+        .testimonial:after {
+            content: '"';
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 3rem;
+            color: var(--primary-blue);
+            opacity: 0.2;
+        }
+        
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--white);
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--primary-blue);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 100px 0 60px;
+                text-align: center;
+            }
+            
+            .section-title:after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .impact-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-hands-helping me-2"></i>DareToCare
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./community.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./donate.html">Donate</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./request.html">Request Help</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="ms-lg-3 mt-3 mt-lg-0">
+                    <a href="./login.html" class="btn btn-outline-primary btn-sm me-2">Login</a>
+                    <a href="./register.html" class="btn btn-primary btn-sm">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Connecting Compassion Across Africa</h1>
+                    <p class="lead mb-4">DareToCare is a platform where Africans can request assistance and donate resources - money, food, clothing, skills, and more. Together, we're building a stronger Africa.</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="#donate" class="btn btn-primary btn-lg">Donate Now</a>
+                        <a href="#request" class="btn btn-outline-primary btn-lg">Request Help</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f8e1c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="img-fluid rounded shadow" alt="Community help">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="impact-number">10+</div>
+                    <p>Lives Impacted</p>
+                </div>
+                <div class="col-md-3 col-6 mb-4 mb-md-0">
+                    <div class="impact-number">12+</div>
+                    <p>Requests Fulfilled</p>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="impact-number">1</div>
+                    <p>African Countries</p>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="impact-number">80%</div>
+                    <p>Direct to Recipients</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2 class="section-title">About DareToCare</h2>
+                    <p class="lead">DareToCare connects those in need with those who can help across Africa.</p>
+                    <p>Founded in 2025, our platform enables Africans to request assistance for various needs including food, clothing, education, medical support, and more. We also organize skill development workshops to empower communities.</p>
+                    <p>Our mission is to create a bridge of hope between donors and recipients, ensuring transparency and direct impact.</p>
+                    <div class="d-flex pt-3">
+                        <div class="me-4">
+                            <div class="feature-icon">
+                                <i class="fas fa-hand-holding-heart"></i>
+                            </div>
+                            <h5>Direct Help</h5>
+                            <p>Connect directly with those in need</p>
+                        </div>
+                        <div>
+                            <div class="feature-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h5>Community</h5>
+                            <p>Build stronger African communities</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <div class="card border-0">
+                        <div class="card-body p-4">
+                            <h4 class="card-title">How It Works</h4>
+                            <div class="d-flex mb-4">
+                                <div class="me-3">
+                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">1</div>
+                                </div>
+                                <div>
+                                    <h5>Post a Request</h5>
+                                    <p>Individuals and communities post their specific needs</p>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-4">
+                                <div class="me-3">
+                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">2</div>
+                                </div>
+                                <div>
+                                    <h5>Community Responds</h5>
+                                    <p>Donors respond with monetary or material support</p>
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">3</div>
+                                </div>
+                                <div>
+                                    <h5>Receive Assistance</h5>
+                                    <p>Resources are delivered directly to those in need</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-5 bg-light" id="projects">
+        <div class="container">
+            <h2 class="section-title center text-center">Our Projects</h2>
+            <p class="text-center lead mb-5">We run various initiatives to support communities across Africa</p>
+            
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="./images/s1.jpeg" class="card-img-top" alt="Education project">
+                        <div class="card-body">
+                            <h5 class="card-title">Education for All</h5>
+                            <p class="card-text">Providing school supplies, scholarships, and educational infrastructure to underserved communities.</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" style="width: 0%">0%</div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>00,000CFA france raised</span>
+                                <span>1,000,000CFA france goal</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-primary w-100">Support This Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="./images/s2.jpeg" class="card-img-top" alt="Clean water project">
+                        <div class="card-body">
+                            <h5 class="card-title">Clean Water Initiative</h5>
+                            <p class="card-text">Building wells and water purification systems in communities without access to clean drinking water.</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" style="width: 2%">2%</div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>10,000CFA france  raised</span>
+                                <span> 800,000CFA france goal</8span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-primary w-100">Support This Project</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Skills workshop">
+                        <div class="card-body">
+                            <h5 class="card-title">Youth Skill Workshops</h5>
+                            <p class="card-text">Free workshops in braiding, baking, shaving, and other trades to empower African youth with marketable skills.</p>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" style="width: 6%">6%</div>
+                            </div>6
+                            <div class="d-flex justify-content-between">
+                                <span>20,000CFA france raised</span>
+                                <span>500,000CFA france goal</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white">
+                            <a href="#" class="btn btn-primary w-100">Support This Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="./projects.html" class="btn btn-outline-primary">View All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog/Requests Section -->
+    <section class="py-5" id="blog">
+        <div class="container">
+            <h2 class="section-title center text-center">Community Requests</h2>
+            <p class="text-center lead mb-5">Recent requests from our community members</p>
+            
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="text-muted"><i class="fas fa-user me-2"></i>Chinwe O.</span>
+                                <span class="text-muted"><i class="fas fa-map-marker-alt me-2"></i>Nigeria</span>
+                            </div>
+                            <h5 class="card-title">School Supplies for My Children</h5>
+                            <p class="card-text">I'm a single mother of three struggling to provide school materials for my children...</p>
+                            <div class="mb-3">
+                                <span class="need-tag">Education</span>
+                                <span class="need-tag">Clothing</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white d-flex justify-content-between">
+                            <small class="text-muted">2 days ago</small>
+                            <a href="./offer.html" class="btn btn-sm btn-outline-primary">Offer Help</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="text-muted"><i class="fas fa-user me-2"></i>Abebi T.</span>
+                                <span class="text-muted"><i class="fas fa-map-marker-alt me-2"></i>Ethiopia</span>
+                            </div>
+                            <h5 class="card-title">Medical Assistance for My Father</h5>
+                            <p class="card-text">My father needs surgery for a heart condition, but we cannot afford the medical bills...</p>
+                            <div class="mb-3">
+                                <span class="need-tag">Medical</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white d-flex justify-content-between">
+                            <small class="text-muted">5 days ago</small>
+                            <a href="./offer.html" class="btn btn-sm btn-outline-primary">Offer Help</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between mb-3">
+                                <span class="text-muted"><i class="fas fa-users me-2"></i>Community Leader</span>
+                                <span class="text-muted"><i class="fas fa-map-marker-alt me-2"></i>Kenya</span>
+                            </div>
+                            <h5 class="card-title">Food Assistance for Community Kitchen</h5>
+                            <p class="card-text">Our community kitchen feeds 200 children daily but we're running low on supplies...</p>
+                            <div class="mb-3">
+                                <span class="need-tag">Food</span>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-white d-flex justify-content-between">
+                            <small class="text-muted">1 week ago</small>
+                            <a href="./offer.html" class="btn btn-sm btn-outline-primary">Offer Help</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="./request.html" class="btn btn-primary me-3"><i class="fas fa-plus me-2"></i>Post a Request</a>
+                <a href="./community.html" class="btn btn-outline-primary">View All Requests</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donate Section -->
+    <section class="py-5 bg-light" id="donate">
+        <div class="container">
+            <h2 class="section-title center text-center">Make a Difference</h2>
+            <p class="text-center lead mb-5">Your support changes lives across Africa</p>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h3 class="mb-4">Ways to Give</h3>
+                    
+                    <div class="row">
+                        <div class="col-sm-6 mb-4">
+                            <div class="card h-100 border-0 text-center">
+                                <div class="card-body">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                    </div>
+                                    <h5>Monetary Donation</h5>
+                                    <p>Make a financial contribution to support our projects</p>
+                                    <a href="./donate.html" class="btn btn-sm btn-outline-primary">Donate Money</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6 mb-4">
+                            <div class="card h-100 border-0 text-center">
+                                <div class="card-body">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-tshirt"></i>
+                                    </div>
+                                    <h5>Donate Goods</h5>
+                                    <p>Contribute clothing, food, books, and other essentials</p>
+                                    <a href="./donate.html" class="btn btn-sm btn-outline-primary">Donate Items</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6 mb-4">
+                            <div class="card h-100 border-0 text-center">
+                                <div class="card-body">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-hands-helping"></i>
+                                    </div>
+                                    <h5>Volunteer</h5>
+                                    <p>Offer your time and skills to help those in need</p>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">Volunteer</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6 mb-4">
+                            <div class="card h-100 border-0 text-center">
+                                <div class="card-body">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-briefcase"></i>
+                                    </div>
+                                    <h5>Corporate Giving</h5>
+                                    <p>Partner with us through your business or organization</p>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <h3 class="mb-4">Donate Now</h3>
+                            <form>
+                                <div class="mb-3">
+                                    <label class="form-label">Donation Type</label>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="donationType" id="oneTime" checked>
+                                            <label class="form-check-label" for="oneTime">One-Time</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="donationType" id="monthly">
+                                            <label class="form-check-label" for="monthly">Monthly</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label class="form-label">Amount</label>
+                                    <div class="d-flex flex-wrap gap-2">
+                                        <input type="radio" class="btn-check" name="amount" id="amount25" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="amount25">1000CFA</label>
+                                        
+                                        <input type="radio" class="btn-check" name="amount" id="amount50" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="amount50">50,0000CFA</label>
+                                        
+                                        <input type="radio" class="btn-check" name="amount" id="amount100" autocomplete="off" checked>
+                                        <label class="btn btn-outline-primary" for="amount100">100,OOOCFA</label>
+                                        
+                                        <input type="radio" class="btn-check" name="amount" id="amountCustom" autocomplete="off">
+                                        <label class="btn btn-outline-primary" for="amountCustom">Custom</label>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3" id="customAmountField" style="display: none;">
+                                    <input type="number" class="form-control" placeholder="Enter custom amount">
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label class="form-label">Select Project (Optional)</label>
+                                    <select class="form-select">
+                                        <option selected>Where it's needed most</option>
+                                        <option>Education for All</option>
+                                        <option>Clean Water Initiative</option>
+                                        <option>Youth Skill Workshops</option>
+                                        <option>Emergency Response Fund</option>
+                                    </select>
+                                </div>
+                                
+                            <button type="submit" class="btn btn-primary w-100">Donate Now</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Request Help Section -->
+    <section class="py-5" id="request">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="section-title center text-center">Request Assistance</h2>
+                    <p class="text-center lead mb-5">Need help? Let our community know what you need</p>
+                    
+                    <div class="card">
+                        <div class="card-body p-4">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" placeholder="Your name">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Email Address</label>
+                                        <input type="email" class="form-control" placeholder="Your email">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="tel" class="form-control" placeholder="Your phone number">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Location</label>
+                                        <input type="text" class="form-control" placeholder="City, Country">
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label">What do you need help with?</label>
+                                        <select class="form-select">
+                                            <option selected>Select category</option>
+                                            <option>Food Assistance</option>
+                                            <option>Clothing</option>
+                                            <option>Educational Materials</option>
+                                            <option>Medical Expenses</option>
+                                            <option>Shelter/Housing</option>
+                                            <option>Skill Training</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label">Tell us more about your situation</label>
+                                        <textarea class="form-control" rows="4" placeholder="Please describe your needs in detail"></textarea>
+                                    </div>
+                                    <div class="col-12 mb-4">
+                                        <label class="form-label">How many people are affected?</label>
+                                        <input type="number" class="form-control" min="1" value="1">
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-primary w-100">Submit Request</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title center text-center">What People Say</h2>
+            <p class="text-center lead mb-5">Stories from our community</p>
+            
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="testimonial h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-circle me-3" width="60" alt="Profile">
+                            <div>
+                                <h5 class="mb-0">Amina J.</h5>
+                                <small class="text-muted">Lagos, Nigeria</small>
+                            </div>
+                        </div>
+                        <p class="mb-0">CareToDare helped me get school supplies for my children when I lost my job. The support from the community was overwhelming and gave me hope during a difficult time.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 mb-4">
+                    <div class="testimonial h-100">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" class="rounded-circle me-3" width="60" alt="Profile">
+                            <div>
+                                <h5 class="mb-0">Kwame O.</h5>
+                                <small class="text-muted">Accra, Ghana</small>
+                            </div>
+                        </div>
+                        <p class="mb-0">Through the skill workshops, I learned baking and now have my own small business. HopeBridge doesn't just give handouts—it provides opportunities for sustainable growth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5" id="contact">
+        <div class="container">
+            <h2 class="section-title center text-center">Contact Us</h2>
+            <p class="text-center lead mb-5">We'd love to hear from you</p>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" placeholder="Full Name" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="email" class="form-control" placeholder="Email Address" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="text" class="form-control" placeholder="Subject" required>
+                            </div>
+                            <div class="col-12 mb-3">
+                                <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="col-lg-5 offset-lg-1">
+                    <div class="mb-4">
+                        <h5>Email</h5>
+                        <p>info@caretodare.org</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5>Phone</h5>
+                        <p>+237 683-469-141</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5>Address</h5>
+                        <p>Molyko<br>Buea , Cameroon</p>
+                    </div>
+                    
+                    <div>
+                        <h5>Follow Us</h5>
+                        <div class="d-flex">
+                            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="text-white mb-4"><i class="fas fa-hands-helping me-2"></i>HopeBridge</h4>
+                    <p>Building bridges of hope between those who want to help and those who need support across Africa.</p>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">Quick Links</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#home">Home</a></li>
+                        <li class="mb-2"><a href="#about">About</a></li>
+                        <li class="mb-2"><a href="#projects">Projects</a></li>
+                        <li class="mb-2"><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-white mb-4">Get Involved</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a href="#donate">Donate</a></li>
+                        <li class="mb-2"><a href="#request">Request Help</a></li>
+                        <li class="mb-2"><a href="#">Volunteer</a></li>
+                        <li class="mb-2"><a href="#">Partnerships</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="text-white mb-4">Newsletter</h5>
+                    <p>Subscribe to our newsletter to receive updates on our projects.</p>
+                    <form class="mt-3">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your email address">
+                            <button class="btn btn-primary" type="button">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <hr class="my-5 bg-light">
+            
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2023 HopeBridge. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="#" class="text-white me-3">Privacy Policy</a>
+                    <a href="#" class="text-white">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show/hide custom amount field
+            document.querySelectorAll('input[name="amount"]').forEach(function(radio) {
+                radio.addEventListener('change', function() {
+                    if (this.id === 'amountCustom') {
+                        document.getElementById('customAmountField').style.display = 'block';
+                    } else {
+                        document.getElementById('customAmountField').style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
